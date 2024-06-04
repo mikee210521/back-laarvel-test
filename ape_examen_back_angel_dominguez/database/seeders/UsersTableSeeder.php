@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\UserDomicilio;
+use Database\Factories\UserFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -14,7 +16,7 @@ class UsersTableSeeder extends Seeder
     public function run(): void
     {
         User::factory(100)->create()->each(function ($user) {
-            $user->userDomicilio()->save(factory(\App\UserDomicilio::class)->make());
+            UserDomicilio::factory()->create(['user_id' => $user->id]);
         });
     }
 }

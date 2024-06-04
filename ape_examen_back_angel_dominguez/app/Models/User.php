@@ -20,6 +20,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'fecha_nacimiento',
     ];
 
     /**
@@ -43,5 +44,10 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+
+    public function userDomicilio(){
+        return $this->hasOne(UserDomicilio::class);
     }
 }
