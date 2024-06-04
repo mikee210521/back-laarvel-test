@@ -9,6 +9,8 @@ class UserDomicilio extends Model
 {
     use HasFactory;
 
+    protected $table='user_domicilio';
+
     protected $fillable = [
         'user_id',
         'domicilio',
