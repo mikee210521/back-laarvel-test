@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use DateTime;
-use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::with('userDomicilio')->get()->each(function ($user) {
-            $user->edad = $this->calculateAge($user->fecha_nacimiento);
+        $users = User::with('userDomicilio')->get()->map(function ($user) {
+            $user->edad = $user->fecha_nacimiento ? \Carbon\Carbon::parse($user->fecha_nacimiento)->age : null;
+            return $user;
         });
 
         return response()->json($users);
